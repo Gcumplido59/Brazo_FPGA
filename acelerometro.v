@@ -6,7 +6,7 @@
 //
 //===========================================================================
 
-module accelerometro (
+module acelerometro (
    //////////// CLOCK //////////
    input 		          		ADC_CLK_10,
    input 		          		MAX10_CLK1_50,

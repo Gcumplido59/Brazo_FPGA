@@ -9,7 +9,7 @@ module VGADemo(
     wire [9:0] CounterY;
     wire clk_pix; 
  
-    clock_divider #(.FREQ(25000000)) clkmedio(
+    clk_div #(.FREQ(25000000)) clkmedio(
         .clk(clk_25),
         .rst(0),
         .clk_div(clk_pix)
@@ -88,31 +88,16 @@ module VGADemo(
                 ((CounterY >= 200+80-8) && (CounterY < 200+80) &&
                  (CounterX >= 375) && (CounterX < 375+40))
               )
-				  // Letra X
-				  ||
-				  (
-					// Barra vertical izquierda
-                ((CounterX >= 50) && (CounterX < 50+8) &&
-                 (CounterY >= 20) && (CounterY < 20+80)) ||
-                // Barra vertical derecha
-                ((CounterX >= 50+40-8) && (CounterX < 50+40) &&
-                 (CounterY >= 20) && (CounterY < 20+80)) ||
-                // Barra horizontal central
-                ((CounterY >= 40-4) && (CounterY < 40+4) &&
-                 (CounterX >= 50) && (CounterX < 50+40))
-				  )
-				  // Letra Y
-				  // Letra Z
           ) begin
               // Dibuja las letras en color
-              VGA_R <= 4'b1111;
-              VGA_G <= 4'b1111;
-              VGA_B <= 4'b1111;
-          end else begin
-              // Fondo
               VGA_R <= 4'b0000;
               VGA_G <= 4'b0000;
               VGA_B <= 4'b0000;
+          end else begin
+              // Fondo
+              VGA_R <= 4'b1111;
+              VGA_G <= 4'b1111;
+              VGA_B <= 4'b1111;
           end
       end else begin
           VGA_R <= 4'b0000;
